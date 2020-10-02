@@ -2,27 +2,34 @@ import java.util.*;
 
 public class Solution {
 
+    static int no = 256;
     static boolean isAnagram(String a, String b) {
-        if (a.length() != b.length())
-            return false;
-
-        a = a.toLowerCase();
-        b = b.toLowerCase();
-
-        HashMap<Character, Integer> map = new HashMap<>();
-
-        for (char letter : a.toCharArray()) {
-            map.put(letter, map.getOrDefault(letter, 0) + 1);
+        // Complete the function
+       
+        String a1 = a.toLowerCase();
+        String b1 = b.toLowerCase();
+        char [] A = a1.toCharArray();
+        char [] B = b1.toCharArray();
+        int count1[] = new int[no];
+        int count2[] = new int[no];
+        for(int c=0; c< no; c++){
+            count1[c] = 0;
+            count2[c] = 0;
+        } 
+        for(int i = 0;i< A.length && i < B.length;i++){
+            count1[A[i]]++;
+            count2[B[i]]++;
         }
-
-        for (char letter : b.toCharArray()) {
-            if (!map.containsKey(letter) || map.get(letter) == 0)
+        if(A.length != B.length)
+            return false;
+        for(int i = 0;i< no;i++){
+            if(count1[i] != count2[i])
                 return false;
-            else
-                map.put(letter, map.get(letter) - 1);
         }
         return true;
+
     }
+
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
